@@ -72,7 +72,7 @@ void port_scanner(char* IP, char* Fp,char* Lp){
 			
 			//we try connecting to the current address (IP: Port)
 			status = connect(sockfd, temp->ai_addr, temp->ai_addrlen);
-			if(status = 0){
+			if(status == 0){
 				printf("Port %d is Open. \n", port);
 				close(sockfd);
 				break;
