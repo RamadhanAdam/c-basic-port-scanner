@@ -12,7 +12,7 @@ void port_scanner(char* IP, char* Fp, char* Lp);
 int main(int argc, char *argv[])
 {
 
-	char srvIP[16] = {0};
+	char srvIP[16] = {0}; //Server IP Address
 	char first_Port[6] = {0};
 	char last_Port[6] = {0};
 
@@ -23,18 +23,16 @@ int main(int argc, char *argv[])
 	}
 
 	strcpy(srvIP,argv[1]); //copying the Server IPV4 address
-	strcpy(first_Port,argv[2]); 
-	strcpy(last_Port, argv[3]);
+	strcpy(first_Port,argv[2]); //copying the first port in the port range
+	strcpy(last_Port, argv[3]); //copying the last port in the port range
 
 	//Staring Port Scanner
-	
 	port_scanner(srvIP, first_Port, last_Port);
 
 	return 0;
 }
 
 void port_scanner(char* IP, char* Fp,char* Lp){
-	
 	
 	struct addrinfo hints, *serv_addr, *temp;
 	int sockfd, port, status;
@@ -47,7 +45,6 @@ void port_scanner(char* IP, char* Fp,char* Lp){
 		hints.ai_family = AF_INET; //IPV4
 		hints.ai_socktype = SOCK_STREAM; //TCP
 
-
 		//converting port number to string
 		char port_str[6];
 		snprintf(port_str, sizeof(port_str), "%d", port);
@@ -58,7 +55,6 @@ void port_scanner(char* IP, char* Fp,char* Lp){
 			continue;
 		}
 		
-
 		for(temp = serv_addr; temp !=NULL; temp = temp -> ai_next){
 			//creatig sockt using address info
 			sockfd = socket(temp -> ai_family,
